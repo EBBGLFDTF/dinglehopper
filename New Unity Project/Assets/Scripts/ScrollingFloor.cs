@@ -12,11 +12,8 @@ public class ScrollingFloor : MonoBehaviour
 	private float screenWidth;
 
 	private void Awake() {
-		childrenTransform = transform.GetComponentsInChildren<Transform>();
+		childrenTransform = GetAllChildrenTransform(); 
 		screenWidth = CalculateScreenWidth();
-	}
-
-	private void Start() {
 		PreplaceFloorObjects();					
 	}
 
@@ -25,14 +22,24 @@ public class ScrollingFloor : MonoBehaviour
 			Move(childrenTransform[i]);		
 		}
 		for (int i = 0; i < childrenTransform.Length; i++) {
-			//ReplaceIfOutOfBound(childrenTransform[i]);	
+			ReplaceIfOutOfBound(childrenTransform[i]);	
 		}
 	}
 
-	private void ReplaceIfOutOfBound(Transform transform) {
-		if (transform.position.x <= -screenWidth) {
-			transform.position = new Vector3(
-				(childrenTransform.Length - 1) * screenWidth, transform.position.y);
+	private Transform[] GetAllChildrenTransform() {
+		int numChildren = transform.childCount;
+		Transform[] children = new Transform[numChildren];
+		for (int i = 0; i < numChildren; i++) {
+			children[i] = transform.GetChild(i);
+		}
+
+		return children;
+	}
+
+	private void ReplaceIfOutOfBound(Transform t) {
+		if (t.position.x <= -screenWidth) {
+			t.position = new Vector3(
+				(childrenTransform.Length - 1) * screenWidth, t.position.y);
 		}
 	}
 
@@ -45,7 +52,7 @@ public class ScrollingFloor : MonoBehaviour
 	private void PreplaceFloorObjects() {
 		for (int i = 0; i < childrenTransform.Length; i++) {
 			childrenTransform[i].position = new Vector3(
-				(i - 1) * screenWidth, transform.position.y);
+				i * screenWidth, childrenTransform[i].position.y);
 		}
 	}
 
