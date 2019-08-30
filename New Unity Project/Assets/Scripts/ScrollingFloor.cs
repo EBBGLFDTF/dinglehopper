@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScrollingFloor : MonoBehaviour
-{
+public class ScrollingFloor : MonoBehaviour {
 
 	public float scrollSpeed;
 

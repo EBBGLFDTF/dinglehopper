@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
 	}
 
 	private void Move() {
-		if (Input.GetKeyDown(jumpButton) && 
+		if (Input.GetKey(jumpButton) && 
 			transform.position.y == floorYPosition) {
 			Debug.Log("pressed jumpButton");
 			Jump();
