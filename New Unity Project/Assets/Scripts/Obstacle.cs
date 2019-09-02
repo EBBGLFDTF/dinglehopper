@@ -4,7 +4,17 @@ using UnityEngine;
 
 public class Obstacle : MonoBehaviour {
 
-	void Update() {
+	public static float scrollSpeed;
 
+	private void Awake() {
+			
+	}
+
+	void Update() {
+		Move();
+	}
+
+	private void Move() {
+		transform.position += Vector3.left * scrollSpeed;
 	}
 }

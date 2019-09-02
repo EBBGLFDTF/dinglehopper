@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScrollingFloor : MonoBehaviour {
+public class ScrollingFloor : MonoBehaviour{
 
-	public float scrollSpeed;
+	public static float scrollSpeed = 0.1f;
 
 	private Transform[] childrenTransform;
 
