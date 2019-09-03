@@ -7,14 +7,26 @@ public class Obstacle : MonoBehaviour {
 	public static float scrollSpeed;
 
 	private void Awake() {
-			
+		Disable();	
+	}
+
+	void Disable() {
+		gameObject.SetActive(false);
 	}
 
 	void Update() {
 		Move();
+		CheckIfOutOfBound();
 	}
 
 	private void Move() {
-		transform.position += Vector3.left * scrollSpeed;
+		Vector3 displacement = Vector3.left * scrollSpeed;
+		transform.position += displacement;
+	}
+
+	private void CheckIfOutOfBound() {
+		if (transform.position.x <= -10) {
+			Disable();
+		}
 	}
 }

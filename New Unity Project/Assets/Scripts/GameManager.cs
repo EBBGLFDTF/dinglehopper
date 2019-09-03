@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour {
 	public static GameObject instanceGameObject;
 
 	private static int points;
-	private static float speed;
+	private static float speed = 0.1f;
 
 	public static int Points {
 		get { return points; }
@@ -34,13 +34,17 @@ public class GameManager : MonoBehaviour {
 
 	private static void IncreaseSpeed(int pointsAdded) {
 		speed += pointsAdded * pointIncreaseModifier;
-		
+
 		//update speeds of objects;
+		Obstacle.scrollSpeed = speed;
 	}
 
 	void Start() {
 		instance = this;
 		instanceGameObject = this.gameObject;
+
+		//instance object speed
+		Obstacle.scrollSpeed = speed;
 	}
 
 }
